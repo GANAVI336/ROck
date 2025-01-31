@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #game {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .choices {
+            margin: 20px 0;
+        }
+        .choice {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .choice:hover {
+            background: #f0f0f0;
+        }
+        .results {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <h1>Rock Paper Scissors</h1>
+        <div class="choices">
+            <button class="choice" id="rock">Rock</button>
+          <img scr="https://sl.bing.net/5yVomVya28" height=100, width=100>
+            <button class="choice" id="paper">Paper</button>
+          <img scr="https://sl.bing.net/iFvv1vmmdoq" height=100, width=100>
+            <button class="choice" id="scissors">Scissors</button>
+          <img src="https://sl.bing.net/jmgPzIE5nQi" height=100, weidth=100>
+        </div>
+        <div class="results">
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const choices = document.querySelectorAll('.choice');
+            const result = document.getElementById('result');
+    
+            choices.forEach(choice => {
+                choice.addEventListener('click', () => {
+                    playGame(choice.id);
+                });
+            });
+    
+            function playGame(playerChoice) {
+                const computerChoice = getComputerChoice();
+                const winner = determineWinner(playerChoice, computerChoice);
+    
+                result.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${winner}`;
+            }
+    
+            function getComputerChoice() {
+                const choices = ['rock', 'paper', 'scissors'];
+                const randomIndex = Math.floor(Math.random() * choices.length);
+                return choices[randomIndex];
+            }
+    
+            function determineWinner(player, computer) {
+                if (player === computer) {
+                    return "It's a tie!";
+                } else if (
+                    (player === 'rock' && computer === 'scissors') ||
+                    (player === 'paper' && computer === 'rock') ||
+                    (player === 'scissors' && computer === 'paper')
+                ) {
+                    return 'You win!';
+                } else {
+                    return 'You lose!';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
